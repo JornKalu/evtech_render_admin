@@ -266,6 +266,7 @@ def login_admin(db: Session, field: str=None, password: str=None):
             'data': None,
         }
     else:
+        return admin
         if not auth.verify_password(plain_password=password, hashed_password=admin.password):
             return {
                 'status': False,

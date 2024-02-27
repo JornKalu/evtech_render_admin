@@ -68,4 +68,4 @@ def get_admins(db: Session):
     return get_query(db=db).filter(Admin.deleted_at == None).order_by(desc(Admin.id))
 
 def admin_login(db: Session, field: str=None):
-    return get_query(db=db).filter(or_(Admin.email == field, Admin.username == field)).first()
+    return get_query(db=db).filter(and_(or_(Admin.email == field, Admin.username == field), Admin.deleted_at == None)).first()

@@ -259,6 +259,7 @@ def remove_user(db: Session, user_id: int = 0, password: str = None):
     
 def login_admin(db: Session, field: str=None, password: str=None):
     admin = admin_login(db=db, field=field)
+    return [admin]
     if admin is None:
         return {
             'status': False,
@@ -266,7 +267,6 @@ def login_admin(db: Session, field: str=None, password: str=None):
             'data': None,
         }
     else:
-        return admin
         if not auth.verify_password(plain_password=password, hashed_password=admin.password):
             return {
                 'status': False,

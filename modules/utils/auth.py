@@ -58,7 +58,7 @@ class AuthHandler():
             user_id = user['id']
         if 'device_id' in user:
             device_id = user['device_id']
-        create_auth_token(db=self.db, admin_id=admin_id, user_id=user_id, device_id=device_id, token=token.decode('utf-8'), status=1, expired_at=expired_at)
+        create_auth_token(db=self.db, admin_id=admin_id, user_id=user_id, device_id=device_id, token=token, status=1, expired_at=expired_at)
         if user_id > 0:
             logout_except_device(db=self.db, user_id=user['id'], device_id=device_id)
         return token

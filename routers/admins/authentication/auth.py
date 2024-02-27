@@ -16,11 +16,12 @@ async def register(request: Request, fields: AdminRegisterModel, db: Session = D
     req = register_admin(db=db, role_id=fields.role_id, username=fields.username, email=fields.email, phone_number=fields.phone_number, password=fields.password, created_by=admin['id'])
     return req
 
-@router.post("/login/", response_model=AdminAuthResponseModel, responses={404: {"model": ErrorResponse}, 401: {"model": ErrorResponse}, 403: {"model": ErrorResponse}})
+@router.post("/login/")
 async def login(request: Request, fields: AdminLoginModel, db: Session = Depends(get_session)):
     ip = request.client.host
-    req = login_admin(db=db, field=fields.field, password=fields.password)
-    return req
+    return ip
+    # req = login_admin(db=db, field=fields.field, password=fields.password)
+    # return req
 
 @router.get("/details", response_model=AdminAuthResponseModel, responses={404: {"model": ErrorResponse}, 401: {"model": ErrorResponse}, 403: {"model": ErrorResponse}})
 async def get_details(request: Request, admin=Depends(auth.auth_admin_wrapper), db: Session = Depends(get_session)):

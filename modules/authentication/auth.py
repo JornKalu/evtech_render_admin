@@ -258,7 +258,6 @@ def remove_user(db: Session, user_id: int = 0, password: str = None):
         }
     
 def login_admin(db: Session, field: str=None, password: str=None):
-    return [field, password]
     admin = admin_login(db=db, field=field)
     if admin is None:
         return {

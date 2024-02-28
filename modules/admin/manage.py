@@ -17,11 +17,23 @@ def retrieve_single_admin(db: Session, admin_id: int=0):
             'data': None
         }
     else:
-        return [admin_id]
+        data = {
+            'id': admin.id,
+            'username': admin.username,
+            'phone_number': admin.phone_number,
+            'email': admin.email,
+            'first_name': admin.first_name,
+            'other_name': admin.other_name,
+            'last_name': admin.last_name,
+            'address': admin.address,
+            'gender': admin.gender,
+            'avatar': admin.avatar,
+            'role': get_single_role_by_id(db=db, id=admin.role_id)
+        }
         return {
             'status': True,
             'message': 'Success',
-            'data': admin
+            'data': data
         }
 
 def retrieve_roles(db: Session):

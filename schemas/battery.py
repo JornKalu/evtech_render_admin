@@ -9,7 +9,7 @@ class BatteryTypeModel(BaseModel):
     voltage: Optional[str] = None
     power: Optional[str] = None
     fee: Optional[float] = 0
-    status: Optional[str] = None
+    status: Optional[int] = 0
     created_at: str
 
     class Config:

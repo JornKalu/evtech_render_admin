@@ -46,7 +46,7 @@ class TransactionModel(BaseModel):
     station_state: Optional[str] = None
     station_latitude: Optional[str] = None
     station_longitude: Optional[str] = None
-    station_number_of_slots: Optional[str] = None
+    station_number_of_slots: Optional[int] = None
     mobility_device_code: Optional[str] = None
     mobility_device_name: Optional[str] = None
     mobility_device_model: Optional[str] = None

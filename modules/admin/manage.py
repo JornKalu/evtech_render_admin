@@ -10,6 +10,7 @@ def retrieve_admins(db: Session):
 
 def retrieve_single_admin(db: Session, admin_id: int=0):
     admin = get_single_admin_by_id(db=db, id=admin_id)
+    return admin
     if admin is None:
         return {
             'status': False,

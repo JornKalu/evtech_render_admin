@@ -16,7 +16,7 @@ router = APIRouter(
 async def get_all(request: Request, admin=Depends(auth.auth_admin_wrapper), db: Session = Depends(get_session)):
     return retrieve_admins(db=db)
 
-@router.get("/get_single/{admin_id}", response_model=AdminAuthRegisterResponseModel, responses={404: {"model": ErrorResponse}, 401: {"model": ErrorResponse}, 403: {"model": ErrorResponse}})
+@router.get("/get_single/{admin_id}")
 async def get_all(request: Request, admin=Depends(auth.auth_admin_wrapper), db: Session = Depends(get_session), admin_id: int = 0):
     return retrieve_single_admin(db=db, admin_id=admin_id)
 

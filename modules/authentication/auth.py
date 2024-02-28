@@ -349,7 +349,6 @@ def register_admin(db: Session, role_id: int = 0, username: str = None, email: s
     
 def get_loggedin_admin(db: Session, admin_id: str=None):
     admin = get_anon_admin_by_id(db=db, id=admin_id)
-    return admin
     if admin is None:
         return {
             'status': False,
@@ -368,7 +367,7 @@ def get_loggedin_admin(db: Session, admin_id: str=None):
             'address': admin.address,
             'gender': admin.gender,
             'avatar': admin.avatar,
-            'role': get_single_role_by_id(db=db, id=admin.role_id)
+            # 'role': get_single_role_by_id(db=db, id=admin.role_id)
         }
         return {
             'status': True,

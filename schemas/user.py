@@ -26,7 +26,7 @@ class UserModel(BaseModel):
     sms_notification: Optional[int] = None
     account_name: Optional[str] = None
     account_number: Optional[str] = None
-    balance: Optional[str] = None
+    balance: Optional[float] = None
 
     class Config:
         orm_mode = True

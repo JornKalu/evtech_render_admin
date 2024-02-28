@@ -140,6 +140,14 @@ class AdminDetailsModel(BaseModel):
 
     class Config:
         orm_mode = True
+        
+class AdminDetailResponseModel(BaseModel):
+    status: bool
+    message: str
+    data: Optional[AdminDetailsModel]
+
+    class Config:
+        orm_mode = True
 
 class AdminUpdatePassword(BaseModel):
     password: str

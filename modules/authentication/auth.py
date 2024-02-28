@@ -1,5 +1,5 @@
 from typing import Dict
-from database.model import user_login, get_single_user_by_phone_number, get_single_user_by_email, update_user, get_single_user_by_id, delete_user, update_profile_by_user_id, get_wallet_by_user_id, update_user_active_device, get_profile_by_user_id, get_single_setting_by_user_id, create_user_with_other_rows, registration_unique_field_check, admin_login, create_admin, get_single_admin_by_id, get_single_role_by_id, admin_registration_unique_field_check, update_admin, delete_admin, get_admins, manage_user_device
+from database.model import user_login, get_single_user_by_phone_number, get_single_user_by_email, update_user, get_single_user_by_id, delete_user, update_profile_by_user_id, get_wallet_by_user_id, update_user_active_device, get_profile_by_user_id, get_single_setting_by_user_id, create_user_with_other_rows, registration_unique_field_check, admin_login, create_admin, get_single_admin_by_id, get_single_role_by_id, admin_registration_unique_field_check, update_admin, delete_admin, get_admins, manage_user_device, get_anon_admin_by_id
 from modules.utils.net import get_ip_info, process_phone_number
 from modules.utils.tools import process_schema_dictionary
 from modules.utils.auth import AuthHandler, get_next_few_minutes, check_if_time_as_pass_now
@@ -348,7 +348,7 @@ def register_admin(db: Session, role_id: int = 0, username: str = None, email: s
         }
     
 def get_loggedin_admin(db: Session, admin_id: str=None):
-    admin = get_single_admin_by_id(db=db, id=admin_id)
+    admin = get_anon_admin_by_id(db=db, id=admin_id)
     if admin is None:
         return {
             'status': False,

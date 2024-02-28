@@ -1,7 +1,7 @@
 from logging import log
 from fastapi import APIRouter, Request, Depends, HTTPException
 from modules.authentication.auth import auth, login_admin, register_admin, get_loggedin_admin, update_admin_details, update_admin_password
-from database.schema import AdminLoginModel, AdminRegisterModel, AdminAuthResponseModel, AdminAuthRegisterResponseModel, AdminAuthUpdateResponseModel, AdminUpdateDetailsModel, AdminDetailsModel, AdminUpdatePassword, ErrorResponse
+from database.schema import AdminLoginModel, AdminRegisterModel, AdminAuthResponseModel, AdminAuthRegisterResponseModel, AdminAuthUpdateResponseModel, AdminUpdateDetailsModel, AdminDetailsModel, AdminDetailResponseModel, AdminUpdatePassword, ErrorResponse
 from database.db import get_session
 from sqlalchemy.orm import Session
 
@@ -16,13 +16,13 @@ async def register(request: Request, fields: AdminRegisterModel, db: Session = D
     req = register_admin(db=db, role_id=fields.role_id, username=fields.username, email=fields.email, phone_number=fields.phone_number, password=fields.password, created_by=admin['id'])
     return req
 
-@router.post("/login/")
+@router.post("/login/", response_model=AdminAuthResponseModel, responses={404: {"model": ErrorResponse}, 401: {"model": ErrorResponse}, 403: {"model": ErrorResponse}})
 async def login(request: Request, fields: AdminLoginModel, db: Session = Depends(get_session)):
     ip = request.client.host
     req = login_admin(db=db, field=fields.field, password=fields.password)
     return req
 
-@router.get("/details", response_model=AdminAuthResponseModel, responses={404: {"model": ErrorResponse}, 401: {"model": ErrorResponse}, 403: {"model": ErrorResponse}})
+@router.get("/details", response_model=AdminDetailResponseModel, responses={404: {"model": ErrorResponse}, 401: {"model": ErrorResponse}, 403: {"model": ErrorResponse}})
 async def get_details(request: Request, admin=Depends(auth.auth_admin_wrapper), db: Session = Depends(get_session)):
     return get_loggedin_admin(db=db, admin_id=admin['id'])
 

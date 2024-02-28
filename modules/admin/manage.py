@@ -9,8 +9,7 @@ def retrieve_admins(db: Session):
     return paginate(data)
 
 def retrieve_single_admin(db: Session, admin_id: int=0):
-    admin = get_anon_admin_by_id(db=db, id=admin_id)
-    return admin
+    admin = get_single_admin_by_id(db=db, id=admin_id)
     if admin is None:
         return {
             'status': False,
@@ -18,6 +17,7 @@ def retrieve_single_admin(db: Session, admin_id: int=0):
             'data': None
         }
     else:
+        return [admin_id]
         return {
             'status': True,
             'message': 'Success',

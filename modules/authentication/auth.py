@@ -367,7 +367,7 @@ def get_loggedin_admin(db: Session, admin_id: str=None):
             'address': admin.address,
             'gender': admin.gender,
             'avatar': admin.avatar,
-            # 'role': get_single_role_by_id(db=db, id=admin.role_id)
+            'role': get_single_role_by_id(db=db, id=admin.role_id)
         }
         return {
             'status': True,

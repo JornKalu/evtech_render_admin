@@ -44,10 +44,10 @@ class AdminRegisterModel(BaseModel):
 
 class RoleModel(BaseModel):
     id: int
-    name: str
+    name: Optional[str] = None
     description: Optional[str] = None
     functions: Optional[str] = None
-    status: int
+    status: Optional[int] = None
 
     class Config:
         orm_mode = True
@@ -127,16 +127,16 @@ class AdminUpdateDetailsModel(BaseModel):
         
 class AdminDetailsModel(BaseModel):
     id: int
-    username: str
-    phone_number: str
-    email: str
-    first_name: str
-    other_name: str
-    last_name: str
-    address: str
-    gender: str
-    avatar: str
-    role: RoleModel
+    username: Optional[str] = None
+    phone_number: Optional[str] = None
+    email: Optional[str] = None
+    first_name: Optional[str] = None
+    other_name: Optional[str] = None
+    last_name: Optional[str] = None
+    address: Optional[str] = None
+    gender: Optional[str] = None
+    avatar: Optional[str] = None
+    role: Optional[RoleModel] = None
 
     class Config:
         orm_mode = True

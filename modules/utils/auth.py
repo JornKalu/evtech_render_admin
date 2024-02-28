@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 import dateparser
 import time
 from settings.config import load_env_config
-from database.model import get_single_user_by_id, create_auth_token, logout_except_device, get_last_login_auth_token_by_user_id, ping_auth_token, get_user_active_device, get_single_admin_by_id, get_last_login_auth_token_by_admin_id
+from database.model import get_single_user_by_id, create_auth_token, logout_except_device, get_last_login_auth_token_by_user_id, ping_auth_token, get_user_active_device, get_single_admin_by_id, get_anon_admin_by_id, get_last_login_auth_token_by_admin_id
 from database.db import session
 import hashlib
 
@@ -69,7 +69,7 @@ class AuthHandler():
             token_type = payload['sub']['token_type']
             if token_type == 1:
                 admin_id = payload['sub']['id']
-                admin = get_single_admin_by_id(db=self.db, id=admin_id)
+                admin = get_anon_admin_by_id(db=self.db, id=admin_id)
                 if admin is None:
                     raise HTTPException(status_code=401, detail='User does not exist')
                 else:

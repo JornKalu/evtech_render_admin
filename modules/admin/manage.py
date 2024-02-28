@@ -1,5 +1,5 @@
 from typing import Dict
-from database.model import get_single_admin_by_id, get_admins, get_roles, get_single_role_by_id, create_role, update_role, delete_role
+from database.model import get_single_admin_by_id, get_anon_admin_by_id, get_admins, get_roles, get_single_role_by_id, create_role, update_role, delete_role
 from modules.utils.tools import process_schema_dictionary
 from sqlalchemy.orm import Session
 from fastapi_pagination.ext.sqlalchemy import paginate
@@ -9,7 +9,7 @@ def retrieve_admins(db: Session):
     return paginate(data)
 
 def retrieve_single_admin(db: Session, admin_id: int=0):
-    admin = get_single_admin_by_id(db=db, id=admin_id)
+    admin = get_anon_admin_by_id(db=db, id=admin_id)
     return admin
     if admin is None:
         return {

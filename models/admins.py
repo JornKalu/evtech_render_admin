@@ -62,8 +62,7 @@ def get_query(db: Session):
     return db.query(Admin.id, Admin.role_id, Admin.username, Admin.phone_number, Admin.email, Admin.email_verified_at, Admin.pin, Admin.password, Admin.fbt, Admin.remember_token, Admin.first_name, Admin.other_name, Admin.last_name, Admin.address, Admin.gender, Admin.avatar, Admin.status, Admin.created_by, Admin.updated_by, Admin.created_at, Admin.updated_at, Admin.deleted_at, Role.name.label('role_name'), Role.description.label('role_description')).join(Role, Role.id == Admin.role_id, isouter=True)
 
 def get_single_admin_by_id(db: Session, id: int=0):
-    # return get_query(db=db).filter(Admin.id == id).first()
-    return db.query(Admin).filter(Admin.id == id).first()
+    return get_query(db=db).filter(Admin.id == id).first()
 
 def get_anon_admin_by_id(db: Session, id: int=0):
     return db.query(Admin).filter(Admin.id == id).first()

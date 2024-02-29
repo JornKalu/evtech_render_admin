@@ -7,7 +7,7 @@ import traceback
 
 def retrieve_admins(db: Session):
     try:
-        data = get_just_admins(db=db)
+        data = get_admins(db=db)
         # return paginate(data)
         return data
     except Exception:

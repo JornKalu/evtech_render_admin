@@ -59,7 +59,7 @@ def delete_admin(db: Session, id: int=0):
     return True
 
 def get_query(db: Session):
-    return db.query(Admin.id, Admin.role_id, Admin.username, Admin.phone_number, Admin.email, Admin.email_verified_at, Admin.pin, Admin.password, Admin.fbt, Admin.remember_token, Admin.first_name, Admin.other_name, Admin.last_name, Admin.address, Admin.gender, Admin.avatar, Admin.status, Admin.created_by, Admin.updated_by, Admin.created_at, Admin.updated_at, Admin.deleted_at)
+    return db.query(Admin)
 
 def get_single_admin_by_id(db: Session, id: int=0):
     return get_query(db=db).filter(Admin.id == id).first()

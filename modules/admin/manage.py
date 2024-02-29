@@ -3,11 +3,16 @@ from database.model import get_single_admin_by_id, get_anon_admin_by_id, get_jus
 from modules.utils.tools import process_schema_dictionary
 from sqlalchemy.orm import Session
 from fastapi_pagination.ext.sqlalchemy import paginate
+import traceback
 
 def retrieve_admins(db: Session):
-    data = get_admins(db=db)
-    # return paginate(data)
-    return data
+    try:
+        data = get_admins(db=db)
+        # return paginate(data)
+        return data
+    except Exception:
+        err = "Stack Trace - %s \n" % (traceback.format_exc())
+        return err
 
 def retrieve_single_admin(db: Session, admin_id: int=0):
     admin = get_single_admin_by_id(db=db, id=admin_id)

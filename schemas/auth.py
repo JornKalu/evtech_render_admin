@@ -83,7 +83,7 @@ class AdminModel(BaseModel):
     avatar: Optional[str] = None
     role_name: Optional[str] = None
     role_description: Optional[str] = None
-    # role: Optional[RoleModel] = None
+    role: Optional[RoleModel] = None
     created_at: Optional[str] = None
 
     class Config:

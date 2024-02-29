@@ -12,7 +12,7 @@ router = APIRouter(
     tags=["v1_admin"]
 )
 
-@router.get("/get_all", response_model=Page[AdminModel], responses={404: {"model": ErrorResponse}, 401: {"model": ErrorResponse}, 403: {"model": ErrorResponse}})
+@router.get("/get_all")
 async def get_all(request: Request, admin=Depends(auth.auth_admin_wrapper), db: Session = Depends(get_session)):
     return retrieve_admins(db=db)
 

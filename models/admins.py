@@ -13,7 +13,7 @@ class Admin(Base):
     __tablename__ = "admins"
      
     id = Column(BigInteger, primary_key=True, index=True)
-    role_id = Column(BigInteger, default=0)
+    role_id = Column(BigInteger, ForeignKey('roles.id'))
     username = Column(String, unique=True, nullable=True)
     phone_number = Column(String, unique=True, nullable=True)
     email = Column(String, unique=True, nullable=True)

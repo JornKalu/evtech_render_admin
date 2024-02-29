@@ -68,7 +68,7 @@ def get_anon_admin_by_id(db: Session, id: int=0):
     return db.query(Admin).filter(Admin.id == id).first()
 
 def get_admins(db: Session):
-    return get_query(db=db).filter(Admin.deleted_at == None).order_by(desc(Admin.id)).all()
+    return get_query(db=db).filter(Admin.deleted_at == None).order_by(desc(Admin.id))
 
 def get_just_admins(db: Session):
     return db.query(Admin).filter(Admin.deleted_at == None).order_by(desc(Admin.id))

@@ -89,6 +89,25 @@ class AdminModel(BaseModel):
     class Config:
         orm_mode = True
 
+class AdminNeoModel(BaseModel):
+    id: int
+    username: Optional[str] = None
+    phone_number: Optional[str] = None
+    email: Optional[str] = None
+    role_id: Optional[int] = None
+    first_name: Optional[str] = None
+    other_name: Optional[str] = None
+    last_name: Optional[str] = None
+    address: Optional[str] = None
+    gender: Optional[str] = None
+    avatar: Optional[str] = None
+    role_name: Optional[str] = None
+    role_description: Optional[str] = None
+    created_at: Optional[str] = None
+
+    class Config:
+        orm_mode = True
+
 class AdminAuthResponseModel(BaseModel):
     status: bool
     message: str

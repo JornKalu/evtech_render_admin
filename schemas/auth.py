@@ -1,5 +1,6 @@
 from typing import Optional
 from pydantic import BaseModel, EmailStr, constr
+from datetime import datetime
 
 class LoginModel(BaseModel):
     phone_number: str
@@ -103,7 +104,7 @@ class AdminNeoModel(BaseModel):
     avatar: Optional[str] = None
     role_name: Optional[str] = None
     role_description: Optional[str] = None
-    created_at: Optional[str] = None
+    created_at: Optional[datetime] = None
 
     class Config:
         orm_mode = True

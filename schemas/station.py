@@ -1,5 +1,6 @@
 from typing import Optional, List
 from pydantic import BaseModel
+from datetime import datetime
 
 
 class StationSlotModel(BaseModel):
@@ -8,7 +9,7 @@ class StationSlotModel(BaseModel):
     battery_id: int
     slot_number: int
     status: int
-    created_at: str
+    created_at: Optional[datetime] = None
     updated_at: Optional[str] = None
     station_name: Optional[str] = None
     station_address: Optional[str] = None
@@ -54,7 +55,7 @@ class StationModel(BaseModel):
     slots: Optional[List[StationSlotModel]] = None
     status: int
     created_by: int
-    created_at: str
+    created_at: Optional[datetime] = None
 
     class Config:
         orm_mode = True

@@ -1,5 +1,6 @@
 from typing import Optional
 from pydantic import BaseModel
+from datetime import datetime
 
 class BatteryTypeModel(BaseModel):
     id: int
@@ -10,7 +11,7 @@ class BatteryTypeModel(BaseModel):
     power: Optional[str] = None
     fee: Optional[float] = 0
     status: Optional[int] = 0
-    created_at: str
+    created_at: Optional[datetime] = None
 
     class Config:
         orm_mode = True
@@ -88,7 +89,7 @@ class BatteryModel(BaseModel):
     mobility_device_vin: Optional[str] = None
     mobility_device_id: Optional[int] = None
     battery_type_name: Optional[str] = None
-    created_at: str
+    created_at: Optional[datetime] = None
 
     class Config:
         orm_mode = True

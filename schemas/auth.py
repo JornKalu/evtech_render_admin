@@ -85,7 +85,7 @@ class AdminModel(BaseModel):
     role_name: Optional[str] = None
     role_description: Optional[str] = None
     role: Optional[RoleModel] = None
-    created_at: Optional[str] = None
+    created_at: Optional[datetime] = None
 
     class Config:
         orm_mode = True

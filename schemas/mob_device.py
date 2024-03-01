@@ -1,5 +1,6 @@
 from typing import Optional
 from pydantic import BaseModel
+from datetime import datetime
 
 class CreateMobDeviceTypeModel(BaseModel):
     name: str
@@ -20,7 +21,7 @@ class MobDeviceTypeModel(BaseModel):
     number_of_batteries: Optional[int] = None
     number_required_without_return: Optional[int] = None
     created_by: Optional[int] = None
-    created_at: str
+    created_at: Optional[datetime] = None
 
     class Config:
         orm_mode = True
@@ -87,7 +88,7 @@ class MobilityDeviceModel(BaseModel):
     right_image: Optional[str] = None
     back_image: Optional[str] = None
     status: Optional[int] = 0
-    created_at: Optional[str] = None
+    created_at: Optional[datetime] = None
     type_name: Optional[str] = None
     type_code: Optional[str] = None
     type_description: Optional[str] = None

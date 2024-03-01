@@ -1,5 +1,6 @@
 from typing import Optional
 from pydantic import BaseModel
+from datetime import datetime
 
 class TransactionModel(BaseModel):
     id: int
@@ -18,7 +19,7 @@ class TransactionModel(BaseModel):
     balance: Optional[float] = None
     is_battery: Optional[int] = None
     status: Optional[int] = None
-    created_at: Optional[str] = None
+    created_at: Optional[datetime] = None
     updated_at: Optional[str] = None
     username: Optional[str] = None
     email: Optional[str] = None

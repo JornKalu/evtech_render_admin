@@ -1,6 +1,6 @@
 from typing import Dict
 from sqlalchemy import Column, Integer, String, DateTime, BigInteger, DECIMAL, Float, TIMESTAMP, SmallInteger, Text, desc
-from sqlalchemy.orm import Session, relationship
+from sqlalchemy.orm import Session
 from sqlalchemy.sql import func
 from sqlalchemy.sql.expression import and_, or_
 from sqlalchemy.sql.schema import ForeignKey
@@ -13,7 +13,7 @@ class Admin(Base):
     __tablename__ = "admins"
      
     id = Column(BigInteger, primary_key=True, index=True)
-    role_id = Column(BigInteger, ForeignKey('roles.id'))
+    role_id = Column(BigInteger, default=0)
     username = Column(String, unique=True, nullable=True)
     phone_number = Column(String, unique=True, nullable=True)
     email = Column(String, unique=True, nullable=True)
@@ -34,8 +34,6 @@ class Admin(Base):
     deleted_at = Column(TIMESTAMP(timezone=True), nullable=True)
     created_at = Column(TIMESTAMP(timezone=True), nullable=False, server_default=func.now())
     updated_at = Column(TIMESTAMP(timezone=True), nullable=True, onupdate=func.now())
-
-    role = relationship("Role")
 
 
 def create_admin(db: Session, role_id: int = 0, username: str = None, email: str = None, phone_number: str = None, email_verified_at: str = None, pin: str = None, password: str = None,  remember_token: str = None, fbt: str = None, status: int = 0, created_by: int = 0, updated_by: int = 0):
@@ -61,7 +59,7 @@ def delete_admin(db: Session, id: int=0):
     return True
 
 def get_query(db: Session):
-    return db.query(Admin, Role).join(Role, Role.id == Admin.role_id)
+    return db.query(Admin.id, Admin.role_id, Admin.username, Admin.phone_number, Admin.email, Admin.email_verified_at, Admin.pin, Admin.password, Admin.fbt, Admin.remember_token, Admin.first_name, Admin.other_name, Admin.last_name, Admin.address, Admin.gender, Admin.avatar, Admin.status, Admin.created_by, Admin.updated_by, Admin.created_at, Admin.updated_at, Admin.deleted_at, Role.name.label('role_name'), Role.description.label('role_description')).join(Role, Role.id == Admin.role_id, isouter=True)
 
 def get_single_admin_by_id(db: Session, id: int=0):
     return get_query(db=db).filter(Admin.id == id).first()
@@ -70,7 +68,7 @@ def get_anon_admin_by_id(db: Session, id: int=0):
     return db.query(Admin).filter(Admin.id == id).first()
 
 def get_admins(db: Session):
-    return get_query(db=db).filter(Admin.deleted_at == None).order_by(desc(Admin.id)).all()
+    return get_query(db=db).filter(Admin.deleted_at == None).order_by(desc(Admin.id))
 
 def get_just_admins(db: Session):
     return db.query(Admin).filter(Admin.deleted_at == None).order_by(desc(Admin.id)).all()

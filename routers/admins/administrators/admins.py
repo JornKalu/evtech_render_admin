@@ -13,7 +13,7 @@ router = APIRouter(
 )
 
 @router.get("/get_all", response_model=Page[AdminNeoModel], responses={404: {"model": ErrorResponse}, 401: {"model": ErrorResponse}, 403: {"model": ErrorResponse}})
-async def get_all(request: Request, admin=Depends(auth.auth_admin_wrapper), db: Session = Depends(get_db)):
+async def get_all(request: Request, admin=Depends(auth.auth_admin_wrapper), db: Session = Depends(get_session)):
     return retrieve_admins(db=db)
 
 @router.get("/get_single/{admin_id}", response_model=AdminDetailResponseModel, responses={404: {"model": ErrorResponse}, 401: {"model": ErrorResponse}, 403: {"model": ErrorResponse}})

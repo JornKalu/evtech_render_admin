@@ -47,7 +47,9 @@ async def catch_exceptions_middleware(request: Request, call_next):
         response.headers["Pragma"] = "no-cache"
         return response
     except Exception as e:
-        err = "Stack Trace - %s \n" % (traceback.format_exc())
+        # err = "Stack Trace - %s \n" % (traceback.format_exc())
+        extype, exc, tb = sys.exc_info()
+        err = traceback.print_exception(extype, exc, tb)
         return JSONResponse(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, content=jsonable_encoder({"detail": str(err)}))
 
 

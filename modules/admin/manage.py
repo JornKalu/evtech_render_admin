@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from fastapi_pagination.ext.sqlalchemy import paginate
 
 def retrieve_admins(db: Session):
-    data = get_admins(db=db)
+    data = get_just_admins(db=db)
     return paginate(data)
     # return data
 

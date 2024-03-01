@@ -10,7 +10,7 @@ class StationSlotModel(BaseModel):
     slot_number: int
     status: int
     created_at: Optional[datetime] = None
-    updated_at: Optional[str] = None
+    updated_at: Optional[datetime] = None
     station_name: Optional[str] = None
     station_address: Optional[str] = None
     battery_name: Optional[str] = None

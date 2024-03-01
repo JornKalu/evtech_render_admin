@@ -20,7 +20,7 @@ class TransactionModel(BaseModel):
     is_battery: Optional[int] = None
     status: Optional[int] = None
     created_at: Optional[datetime] = None
-    updated_at: Optional[str] = None
+    updated_at: Optional[datetime] = None
     username: Optional[str] = None
     email: Optional[str] = None
     phone_number: Optional[str] = None

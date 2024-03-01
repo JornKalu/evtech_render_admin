@@ -9,7 +9,7 @@ class UserModel(BaseModel):
     email: Optional[str] = None
     status: Optional[int] = None
     created_at: Optional[datetime] = None
-    updated_at: Optional[str] = None
+    updated_at: Optional[datetime] = None
     first_name: Optional[str] = None
     other_name: Optional[str] = None
     last_name: Optional[str] = None

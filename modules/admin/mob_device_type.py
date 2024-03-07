@@ -8,9 +8,9 @@ def generate_mob_device_type_code(db: Session):
     num = count_mobility_device_types(db=db)
     return "MOBTYPE_" + str(num + 1)
 
-def insert_new_mob_device_type(db: Session, name: str = None, description: str = None, number_of_wheels: int = 0, number_of_batteries: int = 0, number_required_without_return: int = 0, created_by: int = 0):
+def insert_new_mob_device_type(db: Session, battery_type_id: int = 0, name: str = None, description: str = None, number_of_wheels: int = 0, number_of_batteries: int = 0, number_required_without_return: int = 0, created_by: int = 0):
     code = generate_mob_device_type_code(db=db)
-    mob_device_type = create_mobility_device_type(db=db, name=name, code=code, description=description, number_of_wheels=number_of_wheels, number_of_batteries=number_of_batteries, number_required_without_return=number_required_without_return, created_by=created_by)
+    mob_device_type = create_mobility_device_type(db=db, battery_type_id=battery_type_id, name=name, code=code, description=description, number_of_wheels=number_of_wheels, number_of_batteries=number_of_batteries, number_required_without_return=number_required_without_return, created_by=created_by)
     return {
         'status': True,
         'message': 'Success',

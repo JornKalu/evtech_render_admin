@@ -14,7 +14,7 @@ router = APIRouter(
 
 @router.post("/create", response_model=CreateMobDevTypeResponseModel, responses={404: {"model": ErrorResponse}, 401: {"model": ErrorResponse}, 403: {"model": ErrorResponse}})
 async def create(request: Request, fields: CreateMobDeviceTypeModel, admin=Depends(auth.auth_admin_wrapper), db: Session = Depends(get_session)):
-    req = insert_new_mob_device_type(db=db, name=fields.name, description=fields.description, number_of_wheels=fields.number_of_wheels, number_of_batteries=fields.number_of_batteries, number_required_without_return=fields.number_of_batteries, created_by=admin['id'])
+    req = insert_new_mob_device_type(db=db, battery_type_id=fields.battery_type_id, name=fields.name, description=fields.description, number_of_wheels=fields.number_of_wheels, number_of_batteries=fields.number_of_batteries, number_required_without_return=fields.number_of_batteries, created_by=admin['id'])
     return req
 
 @router.post("/update/{type_id}", response_model=GeneralMobDevTypeResponse, responses={404: {"model": ErrorResponse}, 401: {"model": ErrorResponse}, 403: {"model": ErrorResponse}})

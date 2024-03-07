@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from datetime import datetime
 
 class CreateMobDeviceTypeModel(BaseModel):
+    battery_type_id: Optional[int] = 0
     name: str
     description: Optional[str] = None
     number_of_wheels: int
@@ -14,6 +15,7 @@ class CreateMobDeviceTypeModel(BaseModel):
 
 class MobDeviceTypeModel(BaseModel):
     id: int
+    battery_type_id: Optional[int] = 0
     name: Optional[str] = None
     code: Optional[str] = None
     description: Optional[str] = None
@@ -35,6 +37,7 @@ class CreateMobDevTypeResponseModel(BaseModel):
         orm_mode = True
 
 class UpdateMobDevTypeModel(BaseModel):
+    battery_type_id: Optional[int] = 0
     name: Optional[str] = None
     description: Optional[str] = None
     number_of_wheels: Optional[int] = None
